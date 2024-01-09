@@ -4,10 +4,17 @@ Nota: Il repository contiene la directory del progetto expo esclus la folder nod
 
 L'idea dietro al positioning delle cards è di specificarne una posizione (rispetto al loro centro) in un canvas virtuale del seguente tipo:
 
+<p align="center">
+<img src="https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/5a10f627-5df3-48d6-a338-1a4743acd637" height="600">
+</p>
 
-La prima card ha posizione 0,0.
+La prima card ha sempre posizione 0,0.
 
-Ad ciascuna card è applicato uno stesso offset (canvas_x_offset, canvas_y_offset) inizialmente (0 , 0). Quando si seleziona di traslare su un'altra card, tale offset è impostato alla posizione della card selezionata; si fanno quindi spostare TUTTE le card dell'opposto tale offset e di conseguenza quella selezionata finirà con la posizione sullo (0 , 0).
+A ciascuna card è applicato uno stesso offset (canvas_x_offset, canvas_y_offset) inizialmente posto a (0 , 0). Quando si seleziona di traslare su un'altra card, tale offset è impostato alla posizione della card selezionata; si fanno quindi spostare TUTTE le card dell'opposto tale offset (tramite il meccanismo di animazione di React Native) e di conseguenza quella selezionata finirà con la posizione sullo (0 , 0), ovvero al centro dello schermo.
+
+<p align="center">
+<img src="https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/6e923034-19cc-4588-897c-0e076cb01309" height="600"> | <img src="https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/4077eb65-dfba-4e56-a816-484f55935104" height="600">
+</p>
 
 ## MARKER POSITIONING:
 
