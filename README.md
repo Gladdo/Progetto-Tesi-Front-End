@@ -1,5 +1,3 @@
-Nota: Il repository contiene la directory del progetto expo esclus la folder node_moules per via della dimensione e la quantità di files.
-
 # MECCANISMI PER LA SELEZIONE DEL POI
 
 ## CANVAS
@@ -86,3 +84,12 @@ Si effettua un'interpolazione agli estremi dell'ellisse per allargarla; il risul
 
 Scegliendo opportuni valori per i fattori utilizzati nelle trasformazioni si garantisce che le arrows compaiono nello schermo utilizzato dall'utente.
 
+# TECHNICAL NOTES
+
+All'interno del file configs è possibile:
+
+&emsp;&emsp;&emsp;* Configurare l'indirizzo del server django a cui connettersi
+
+&emsp;&emsp;&emsp;* Impostare un'offset rispetto al bordo inferiore dello schermo per ciascuno screen dell'applicazione (bottomSafeArea)
+
+Nota: Il repository contiene la directory del progetto expo esclus la folder node_moules per via della dimensione e la quantità di files.
