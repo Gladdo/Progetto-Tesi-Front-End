@@ -36,7 +36,7 @@ A questo punto si prende il precedente range e lo si moltiplica per FRAME_WIDTH;
 
 Si può usare la quantità SCREEN_POS ottenuta per posizionare orizzontalmente il marker nello schermo con:
 
-FRAME_WIDTH/2 + SCREEN_POS - MARKER_SIZE/2
+&emsp;&emsp;&emsp;FRAME_WIDTH/2 + SCREEN_POS - MARKER_SIZE/2
 
 
 
