@@ -16,17 +16,17 @@ Come prima cosa si proietta il ratio del telefono sul canvas: nell'altezza del t
 
 Il numero di pixel dell'immagine che corrispondono a tale linea gialla orizzontale si trovano con: 
 
-&emsp;ORIGINAL_IMAGE_PIXELS * FRAME_WIDTH/FRAME_HEIGHT
+&emsp;&emsp;&emsp;ORIGINAL_IMAGE_PIXELS * FRAME_WIDTH/FRAME_HEIGHT
 
 Mantenendo tutti i markers relativamente vicini al centro, questi vengono proiettati sullo schermo del telefono nel seguente modo (facendo riferimento al posizionamento orizzontale, per il verticale si ragiona allo stesso modo):
 
 markers[i].position.x, potendo essere sia positivo che negativo in relazione alla sua posizione rispetto al centro, sarà nel range: 
 
-&emsp;[ - (ORIGINAL_IMAGE_PIXELS * FRAME_WIDTH/FRAME_HEIGHT)/2 , + (ORIGINAL_IMAGE_PIXELS * FRAME_WIDTH/FRAME_HEIGHT)/2 ]
+&emsp;&emsp;&emsp;[ - (ORIGINAL_IMAGE_PIXELS * FRAME_WIDTH/FRAME_HEIGHT)/2 , + (ORIGINAL_IMAGE_PIXELS * FRAME_WIDTH/FRAME_HEIGHT)/2 ]
 
 Dunque il calcolo: 
 
-&emsp;markers[i].position.x/( ORIGINAL_IMAGE_PIXELS * FRAME_WIDTH/FRAME_HEIGHT )
+&emsp;&emsp;&emsp;markers[i].position.x/( ORIGINAL_IMAGE_PIXELS * FRAME_WIDTH/FRAME_HEIGHT )
 
 Interpola tale range su [ -0.5 , 0.5 ]
 
