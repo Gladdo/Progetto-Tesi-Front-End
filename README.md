@@ -1,5 +1,7 @@
 Nota: Il repository contiene la directory del progetto expo esclus la folder node_moules per via della dimensione e la quantità di files.
 
+### MECCANISMI PER LA SELEZIONE DEL POI
+
 ## CANVAS
 
 L'idea dietro al positioning delle cards è di specificarne una posizione (rispetto al loro centro) in un canvas virtuale del seguente tipo:
