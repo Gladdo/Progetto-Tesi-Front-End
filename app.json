@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "image-generator-front-end",
+    "slug": "image-generator-front-end",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+        }
+      ]
+    ]
+    
+  }
+}
