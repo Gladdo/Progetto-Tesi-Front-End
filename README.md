@@ -1,6 +1,6 @@
 Nota: Il repository contiene la directory del progetto expo esclus la folder node_moules per via della dimensione e la quantità di files.
 
-### MECCANISMI PER LA SELEZIONE DEL POI
+# MECCANISMI PER LA SELEZIONE DEL POI
 
 ## CANVAS
 
