@@ -45,10 +45,14 @@ ARROWS POSITIONING:
 Le arrows per swappare di schermo sono posizionate con la seguente idea riassuntiva, prendendo in considerazione una singola arrow:
 
 &emsp;&emsp;&emsp;* Si prende una delle card associate alla card corrente e si trova il vettore d che ne congiunge le posizioni
+
 &emsp;&emsp;&emsp;* Si normalizza d; equivale a proiettare d sul cerchio unitario nel vettore n
+
 &emsp;&emsp;&emsp;* Si proietta n su un'ellisse moltiplicando gli assi del cerchio per dei fattori:
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;x = n.x * ELIPPSE_X_AXIS_LENGTH 
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;y = n.y * ELLIPSE_Y_AXIS_LENGTH 
+
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;x = n.x * ELIPPSE_X_AXIS_LENGTH
+
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;y = n.y * ELLIPSE_Y_AXIS_LENGTH
 
 Si effettua un'interpolazione agli estremi dell'ellisse per allargarla; il risultato finale è il seguente:
 
