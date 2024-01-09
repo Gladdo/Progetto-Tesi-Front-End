@@ -20,15 +20,21 @@ A ciascuna card è applicato uno stesso offset (canvas_x_offset, canvas_y_offset
 
 Si vuole creare un mapping di questo tipo:
 
+<p align="center">
 <img src="https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/8ca0d324-8c48-4178-b248-00f11da3123e" width="350" height="350">
+</p>
 
 Le coordinate dei markers specificano in pixel una posizione nell'immagine con il seguente sistema di coordinate:
 
+<p align="center">
 <img src="https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/fd055ffc-4934-4d0a-8097-225ff505a303" width="350" height="350">
+</p>
 
 Come prima cosa si proietta il ratio del telefono sul canvas: nell'altezza del telefono (FRAME_HEIGHT) entrerà verticalmente l'intera immagine; nella larghezza del telefono (FRAME_WIDTH) dovranno entrare i pixel dell'immagine contenuti nella linea gialla orizzontale (che dipenderà dal ratio del telefono):
 
+<p align="center">
 <img src="https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/2e5aa314-f470-453c-8715-18d6a23c5c3a" width="350" height="350">
+</p>
 
 Il numero di pixel dell'immagine che corrispondono a tale linea gialla orizzontale si trovano con: 
 
@@ -72,8 +78,9 @@ Le arrows per swappare di schermo sono posizionate con la seguente idea riassunt
 
 Si effettua un'interpolazione agli estremi dell'ellisse per allargarla; il risultato finale è il seguente:
 
+<p align="center">
 <img src="https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/2a6a38a9-3e34-480c-a12d-6abc6608dc4b" height="500">
-
+</p>
 
 Scegliendo opportuni valori per i fattori utilizzati nelle trasformazioni si garantisce che le arrows compaiono nello schermo utilizzato dall'utente.
 
