@@ -1,5 +1,14 @@
 Nota: Il repository contiene la directory del progetto expo esclus la folder node_moules per via della dimensione e la quantità di files.
 
+## CANVAS
+
+L'idea dietro al positioning delle cards è di specificarne una posizione (rispetto al loro centro) in un canvas virtuale del seguente tipo:
+
+
+La prima card ha posizione 0,0.
+
+Ad ciascuna card è applicato uno stesso offset (canvas_x_offset, canvas_y_offset) inizialmente (0 , 0). Quando si seleziona di traslare su un'altra card, tale offset è impostato alla posizione della card selezionata; si fanno quindi spostare TUTTE le card dell'opposto tale offset e di conseguenza quella selezionata finirà con la posizione sullo (0 , 0).
+
 ## MARKER POSITIONING:
 
 Si vuole creare un mapping di questo tipo:
