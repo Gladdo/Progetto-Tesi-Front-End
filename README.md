@@ -86,10 +86,12 @@ Scegliendo opportuni valori per i fattori utilizzati nelle trasformazioni si gar
 
 # TECHNICAL NOTES
 
-All'interno del file configs è possibile:
+Nota: All'interno del file configurations.js dentro la folder configs è possibile:
 
 &emsp;&emsp;&emsp;* Configurare l'indirizzo del server django a cui connettersi
 
 &emsp;&emsp;&emsp;* Impostare un'offset rispetto al bordo inferiore dello schermo per ciascuno screen dell'applicazione (bottomSafeArea)
 
 Nota: Il repository contiene la directory del progetto expo esclus la folder node_moules per via della dimensione e la quantità di files.
+
+Nota: Le dependencies utilizzate nel progetto react, e che compaiono con il comando "npm list" all'interno della folder del progetto, sono specificate nel file installed-dependencies.txt
