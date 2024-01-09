@@ -32,6 +32,12 @@ Interpola tale range su [ -0.5 , 0.5 ]
 
 A questo punto si prende il precedente range e lo si moltiplica per FRAME_WIDTH; questo proietta la posizione originale in un range pari a 
 
-&emsp;&emsp;&emsp;[ - FRAME_WIDTH/2 , + FRAME_WIDTH/ ] 
+&emsp;&emsp;&emsp;[ - FRAME_WIDTH/2 , + FRAME_WIDTH/2 ]
+
+Si può usare la quantità SCREEN_POS ottenuta per posizionare orizzontalmente il marker nello schermo con:
+
+FRAME_WIDTH/2 + SCREEN_POS - MARKER_SIZE/2
+
+
 
 
