@@ -56,6 +56,7 @@ Le arrows per swappare di schermo sono posizionate con la seguente idea riassunt
 
 Si effettua un'interpolazione agli estremi dell'ellisse per allargarla; il risultato finale è il seguente:
 
+<img src="https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/2a6a38a9-3e34-480c-a12d-6abc6608dc4b" height="500">
 
 
 Scegliendo opportuni valori per i fattori utilizzati nelle trasformazioni si garantisce che le arrows compaiono nello schermo utilizzato dall'utente.
