@@ -38,6 +38,8 @@ Si può usare la quantità SCREEN_POS ottenuta per posizionare orizzontalmente i
 
 &emsp;&emsp;&emsp;FRAME_WIDTH/2 + SCREEN_POS - MARKER_SIZE/2
 
+NB: accomodando le posizioni dei markers in modo tale da rientrare nel ratio più piccolo possibile, si ha garanzia che non fuoriescano dallo schermo per tutti i ratio più grandi. 
+
 
 
 
