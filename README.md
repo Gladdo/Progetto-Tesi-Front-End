@@ -1,6 +1,6 @@
 Nota: Il repository contiene la directory del progetto expo esclus la folder node_moules per via della dimensione e la quantità di files.
 
-MARKER POSITIONING:
+## MARKER POSITIONING:
 
 Si vuole creare un mapping di questo tipo:
 
@@ -40,7 +40,7 @@ Si può usare la quantità SCREEN_POS ottenuta per posizionare orizzontalmente i
 
 NB: accomodando le posizioni dei markers in modo tale da rientrare nel ratio più piccolo possibile, si ha garanzia che non fuoriescano dallo schermo per tutti i ratio più grandi. 
 
-ARROWS POSITIONING:
+## ARROWS POSITIONING:
 
 Le arrows per swappare di schermo sono posizionate con la seguente idea riassuntiva, prendendo in considerazione una singola arrow:
 
