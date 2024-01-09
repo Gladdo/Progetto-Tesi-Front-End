@@ -30,6 +30,8 @@ Dunque il calcolo:
 
 Interpola tale range su [ -0.5 , 0.5 ]
 
-A questo punto si prende il precedente range e lo si moltiplica per FRAME_WIDTH; questo proietta la posizione originale in un range pari a [ - FRAME_WIDTH/2 , + FRAME_WIDTH/ ] 
+A questo punto si prende il precedente range e lo si moltiplica per FRAME_WIDTH; questo proietta la posizione originale in un range pari a 
+
+&emsp;&emsp;&emsp;[ - FRAME_WIDTH/2 , + FRAME_WIDTH/ ] 
 
 
