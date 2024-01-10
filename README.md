@@ -84,7 +84,7 @@ Scegliendo opportuni valori per i fattori utilizzati nelle trasformazioni si gar
 
 # TECHNICAL NOTES
 
-Nota: All'interno del file configurations.js dentro la folder configs è possibile:
+Nota: All'interno del file configurations.js, dentro la folder configs, è possibile:
 
 - Configurare l'indirizzo del server django a cui connettersi
 - Impostare un'offset rispetto al bordo inferiore dello schermo per ciascuno screen dell'applicazione (bottomSafeArea)
