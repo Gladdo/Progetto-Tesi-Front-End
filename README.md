@@ -66,15 +66,11 @@ NB: accomodando le posizioni dei markers in modo tale da rientrare nel ratio pi�
 
 Le arrows per swappare di schermo sono posizionate con la seguente idea riassuntiva, prendendo in considerazione una singola arrow:
 
-&emsp;&emsp;&emsp;* Si prende una delle card associate alla card corrente e si trova il vettore d che ne congiunge le posizioni
-
-&emsp;&emsp;&emsp;* Si normalizza d; equivale a proiettare d sul cerchio unitario nel vettore n
-
-&emsp;&emsp;&emsp;* Si proietta n su un'ellisse moltiplicando gli assi del cerchio per dei fattori:
-
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;x = n.x * ELIPPSE_X_AXIS_LENGTH
-
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;y = n.y * ELLIPSE_Y_AXIS_LENGTH
+- Si prende una delle card associate alla card corrente e si trova il vettore d che ne congiunge le posizioni
+- Si normalizza d; equivale a proiettare d sul cerchio unitario nel vettore n
+- Si proietta n su un'ellisse moltiplicando gli assi del cerchio per dei fattori:
+  - x = n.x * ELIPPSE_X_AXIS_LENGTH
+  - y = n.y * ELLIPSE_Y_AXIS_LENGTH
 
 Si effettua un'interpolazione agli estremi dell'ellisse per allargarla; il risultato finale è il seguente:
 
@@ -88,9 +84,8 @@ Scegliendo opportuni valori per i fattori utilizzati nelle trasformazioni si gar
 
 Nota: All'interno del file configurations.js dentro la folder configs è possibile:
 
-&emsp;&emsp;&emsp;* Configurare l'indirizzo del server django a cui connettersi
-
-&emsp;&emsp;&emsp;* Impostare un'offset rispetto al bordo inferiore dello schermo per ciascuno screen dell'applicazione (bottomSafeArea)
+- Configurare l'indirizzo del server django a cui connettersi
+- Impostare un'offset rispetto al bordo inferiore dello schermo per ciascuno screen dell'applicazione (bottomSafeArea)
 
 Nota: Il repository contiene la directory del progetto expo esclus la folder node_moules per via della dimensione e la quantità di files.
 
