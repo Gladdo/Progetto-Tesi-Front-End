@@ -92,3 +92,8 @@ Nota: All'interno del file configurations.js dentro la folder configs è possibi
 Nota: Il repository contiene la directory del progetto expo esclusa la folder node_moules per via della dimensione e la quantità di files.
 
 Nota: Le dependencies utilizzate nel progetto react, e che compaiono con il comando "npm list" all'interno della folder del progetto, sono specificate nel file installed-dependencies.txt
+
+## TO-DO:
+
+- Migliorare la qualità (risoluzione) della foto catturate con la camera di expo: migliore è la qualità meglio viene il LoRA
+- Migliorare le istruzioni per la cattura delle foto di training (?)
