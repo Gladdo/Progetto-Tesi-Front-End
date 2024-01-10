@@ -89,6 +89,42 @@ Si effettua un'interpolazione agli estremi dell'ellisse per allargarla; il risul
 
 Scegliendo opportuni valori per i fattori utilizzati nelle trasformazioni si garantisce che le arrows compaiono nello schermo utilizzato dall'utente.
 
+# FLOW DELL'APPLICAZIONE
+
+Nel menù principale è possibile scegliere 3 opzioni: Generazione di un'immagine, Training LoRA, Check di un lora code.
+
+### Generazione di una immagine:
+
+Si inizia selezionando la città desiderata; quindi viene mostrato la mappa per la selezione del POI di tale città. Alla selezione di un marker compare un popup del POI selezionato; cliccandoci sopra si conferma la selezione, cliccando da un'altra parte dello schermo si torna alla scelta del POI.
+
+Dopo la scelta del POI si passa alla selezione della foto nel relativo POI e a come inquadrare il soggetto da inserire.
+
+Successivamente si passa alla specifica dei dettagli del soggetto.
+
+Infine si arriva all'eventuale inserimento del LoRA code e al bottone che avvia la generazione.
+
+Avviata la generazione si rimane in attesa del completamento.
+
+Al completamento viene mostrata l'immagine generata e la possibilità di tornare alla home page.
+
+### LoRA Training:
+
+Selezionando il Lora Training si passa alle istruzioni per la scelta delle foto per il training del modello LoRA; proseguendo si arriva alla pagina per la cattura delle foto.
+
+In questa pagina l'utente deve selezionare uno dei bottoni contenenti le teste, quindi cliccare il frame centrale della pagina che porta alla camera e scattare una foto.
+
+Ogni volta che si scatta una foto, il relativo bottone diventa verde; quanto tutti i bottoni con il logo di una testa sono verdi, allora il bottone Confirm avvierà il training e si passa all'ultimo screen.
+
+Nell'ultimo screen si comunica all'utente il codice LoRA che potrà utilizzare infondo al form per la generazione
+
+### Check Lora
+
+Questa semplice pagina fornisce ad un'utente di controllare la validità del proprio codice LoRA; inserendo il codice e premendo Check si ottiene in output una delle seguenti opzioni:
+
+- Ready to use: il lora code è valido e il modello associato è pronto
+- Not ready yet: il lora code è valido ma il modello associato è ancora in training
+- Does not exists: il lora code non è un codice valido
+
 # TECHNICAL NOTES
 
 Nota: All'interno del file configurations.js, dentro la folder configs, è possibile:
