@@ -23,13 +23,13 @@ L'idea dell'utilizzo di questo meccanismo è per semplificare l'interazione dell
 
 ## MARKER POSITIONING:
 
-Si vuole creare un mapping di questo tipo tra il display del telefono e l'immagine della mappa:
+Per il posizionamento dei Markers si vuole creare un mapping di questo tipo tra il display del telefono e l'immagine della mappa:
 
 <p align="center">
 <img src="https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/8ca0d324-8c48-4178-b248-00f11da3123e" width="350" height="350">
 </p>
 
-Ovvero si vuole far si che i 1000 pixel verticali dell'immagine del POI vadano ad entrare in qualsiasi sia il numero di pixel verticali del frame, mentre si adegua la quantità orizzontale mostrata in relazione al ratio del display del dispositivo.
+Ovvero si vuole far si che i 1000 pixel verticali dell'immagine vadano a rientrare in qualsiasi sia il numero di pixel verticali del frame (FRAME_HEIGHT), mentre si adegua la quantità orizzontale di pixel mostrati in relazione al ratio del display del dispositivo (FRAME_WIDTH/FRAME_HEIGHT).
 
 I markers sono posizionati sulla mappa specificando una posizione, in pixel, sull'immagine del POI; in particolare utilizzano il seguente sistema di coordinate:
 
@@ -49,25 +49,25 @@ Il numero di pixel dell'immagine che corrispondono a tale linea gialla orizzonta
 
 &emsp;&emsp;&emsp;ORIGINAL_IMAGE_PIXELS * FRAME_WIDTH/FRAME_HEIGHT
 
-Mantenendo tutti i markers relativamente vicini al centro, questi vengono proiettati sullo schermo del telefono nel seguente modo (facendo riferimento al posizionamento orizzontale, per il verticale si ragiona allo stesso modo):
+Mantenendo tutti i markers relativamente vicini al centro, questi vengono proiettati sullo schermo del telefono ragionando nel seguente modo (si fa riferimento al posizionamento orizzontale; quello verticale si ottiene allo stesso modo):
 
-markers[i].position.x, potendo essere sia positivo che negativo in relazione alla sua posizione rispetto al centro, sarà nel range: 
+La posizione orizzontale del marker nell'immagine markers[i].position.x può essere sia positiva che negativa; in relazione alla sua posizione rispetto al centro avrà un valore nel range: 
 
 &emsp;&emsp;&emsp;[ - (ORIGINAL_IMAGE_PIXELS * FRAME_WIDTH/FRAME_HEIGHT)/2 , + (ORIGINAL_IMAGE_PIXELS * FRAME_WIDTH/FRAME_HEIGHT)/2 ]
 
-Dunque il calcolo: 
+Markers posizionati fuori da questo range non compariranno sul display.
+
+Si utilizza quindi il seguente calcolo per interpolare il precedente range sul range [-0.5, 0.5]: 
 
 &emsp;&emsp;&emsp;markers[i].position.x/( ORIGINAL_IMAGE_PIXELS * FRAME_WIDTH/FRAME_HEIGHT )
 
-Interpola tale range su [ -0.5 , 0.5 ]
-
-A questo punto si prende il precedente range e lo si moltiplica per FRAME_WIDTH; questo proietta la posizione originale in un range pari a 
+Moltiplicando il precedente range per FRAME_WIDTH si va a proiettare la coordinata del marker nel range: 
 
 &emsp;&emsp;&emsp;[ - FRAME_WIDTH/2 , + FRAME_WIDTH/2 ]
 
-Si può usare la quantità SCREEN_POS ottenuta per posizionare orizzontalmente il marker nello schermo con:
+E si può usare proprio quest'ultimo valore della coordinata (MARKER_SCREEN_POS) per posizionare il marker sullo schermo nel seguente modo:
 
-&emsp;&emsp;&emsp;FRAME_WIDTH/2 + SCREEN_POS - MARKER_SIZE/2
+&emsp;&emsp;&emsp;FRAME_WIDTH/2 + MARKER_SCREEN_POS - MARKER_SIZE/2
 
 NB: accomodando le posizioni dei markers in modo tale da rientrare nel ratio più piccolo possibile, si ha garanzia che non fuoriescano dallo schermo per tutti i ratio più grandi. 
 
