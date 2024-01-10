@@ -101,7 +101,7 @@ Dopo la scelta del POI si passa alla selezione della foto nel relativo POI e a c
 
 Successivamente si passa alla specifica dei dettagli del soggetto.
 
-Infine si arriva all'eventuale inserimento del LoRA code e al bottone che avvia la generazione.
+Infine si arriva all'eventuale inserimento del "LoRA code" e al bottone che avvia la generazione.
 
 Avviata la generazione si rimane in attesa del completamento.
 
@@ -109,17 +109,18 @@ Al completamento viene mostrata l'immagine generata e la possibilità di tornare
 
 ### LoRA Training:
 
-Selezionando il Lora Training si passa alle istruzioni per la scelta delle foto per il training del modello LoRA; proseguendo si arriva alla pagina per la cattura delle foto.
+Selezionando il Lora Training si passa inizialmente a delle istruzioni dove è spiegato come scegliere le foto per il training; proseguendo si arriva alla pagina per la cattura delle foto.
 
-In questa pagina l'utente deve selezionare uno dei bottoni contenenti le teste, quindi cliccare il frame centrale della pagina che porta alla camera e scattare una foto.
+In questa pagina l'utente deve selezionare uno dei bottoni contenenti le teste; ciascuno dei bottono è relativo ad una differente foto da catturare. \
+Selezionato il bottone, cliccando il frame centrale si accede alla camera del dispositivo e si può scattare la foto associata al bottonoe selezionato.
 
-Ogni volta che si scatta una foto, il relativo bottone diventa verde; quanto tutti i bottoni con il logo di una testa sono verdi, allora il bottone Confirm avvierà il training e si passa all'ultimo screen.
+Fatto ciò il relativo bottone diventa verde; quanto tutti i e 5 i bottoni delle foto sono verdi, allora premendo il bottone Confirm verrà avviato il training e si procede verso l'ultimo screen.
 
-Nell'ultimo screen si comunica all'utente il codice LoRA che potrà utilizzare infondo al form per la generazione
+Nell'ultimo screen si comunica all'utente il codice LoRA che potrà utilizzare durante la compilazione del form per la generazione dell'immagine.
 
 ### Check Lora
 
-Questa semplice pagina fornisce ad un'utente di controllare la validità del proprio codice LoRA; inserendo il codice e premendo Check si ottiene in output una delle seguenti opzioni:
+Questa screen fornisce ad un'utente la possibilità di controllare la validità del proprio codice LoRA; inserendo il codice e premendo Check si ottiene in output una delle seguenti opzioni:
 
 - Ready to use: il lora code è valido e il modello associato è pronto
 - Not ready yet: il lora code è valido ma il modello associato è ancora in training
