@@ -73,7 +73,7 @@ NB: accomodando le posizioni dei markers in modo tale da rientrare nel ratio pi√
 
 ## ARROWS POSITIONING:
 
-Le arrows per swappare di schermo sono posizionate con la seguente idea riassuntiva, prendendo in considerazione una singola arrow:
+Le arrows per swappare di schermo sono posizionate con la seguente idea riassuntiva; prendendo in considerazione una singola arrow:
 
 - Si prende una delle card associate alla card corrente e si trova il vettore d che ne congiunge le posizioni
 - Si normalizza d; equivale a proiettare d sul cerchio unitario nel vettore n
