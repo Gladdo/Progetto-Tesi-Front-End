@@ -19,6 +19,8 @@ A ciascuna card è applicato uno stesso offset (canvas_x_offset, canvas_y_offset
 (nota: Le immagini utilizzate per le Cards sono catturate tramite google-earth e sono memorizzate lato back-end)
 (nota: il canvas è solo virtuale e lo sfondo è fermo sull'applicazione)
 
+L'idea dell'utilizzo di questo meccanismo è per semplificare l'interazione dell'utente nella scelta del POI, dando un'impatto visivo e geografico del luogo in cui si sceglie di generare la foto.
+
 ## MARKER POSITIONING:
 
 Si vuole creare un mapping di questo tipo tra il display del telefono e l'immagine della mappa:
