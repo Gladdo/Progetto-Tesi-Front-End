@@ -10,7 +10,7 @@ L'idea dietro al positioning delle cards è di specificarne una posizione (rispe
 
 La prima card ha sempre posizione 0,0.
 
-A ciascuna card è applicato uno stesso offset (canvas_x_offset, canvas_y_offset) inizialmente posto a (0 , 0). Quando si seleziona di traslare su un'altra card, tale offset è impostato alla posizione della card selezionata; si fanno quindi spostare TUTTE le card dell'opposto tale offset (tramite il meccanismo di animazione di React Native) e di conseguenza quella selezionata finirà con la posizione sullo (0 , 0), ovvero al centro dello schermo.
+A ciascuna card è applicato uno stesso offset (canvas_x_offset, canvas_y_offset) inizialmente posto a (0 , 0). Quando si seleziona di traslare su un'altra card, tale offset è impostato alla posizione della card selezionata; si fanno quindi spostare TUTTE le card dell'opposto di tale offset (tramite il meccanismo di animazione di React Native) e di conseguenza quella selezionata finirà con la posizione sullo (0 , 0), ovvero al centro dello schermo.
 
 <p align="center">
 <img src="https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/6e923034-19cc-4588-897c-0e076cb01309" height="600"> | <img src="https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/4077eb65-dfba-4e56-a816-484f55935104" height="600">
@@ -20,17 +20,21 @@ A ciascuna card è applicato uno stesso offset (canvas_x_offset, canvas_y_offset
 
 ## MARKER POSITIONING:
 
-Si vuole creare un mapping di questo tipo:
+Si vuole creare un mapping di questo tipo tra il display del telefono e l'immagine della mappa:
 
 <p align="center">
 <img src="https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/8ca0d324-8c48-4178-b248-00f11da3123e" width="350" height="350">
 </p>
 
-Le coordinate dei markers specificano in pixel una posizione nell'immagine con il seguente sistema di coordinate:
+Ovvero si vuole far si che i 1000 pixel verticali dell'immagine del POI vadano ad entrare in qualsiasi sia il numero di pixel verticali del frame, mentre si adegua la quantità orizzontale mostrata in relazione al ratio del display del dispositivo.
+
+I markers sono posizionati sulla mappa specificando una posizione, in pixel, sull'immagine del POI; in particolare utilizzano il seguente sistema di coordinate:
 
 <p align="center">
 <img src="https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/fd055ffc-4934-4d0a-8097-225ff505a303" width="350" height="350">
 </p>
+
+Tali coordinate devono quindi essere riportate a delle coordinate sul display del telefono; per fare ciò si utilizza il seguente meccanismo:
 
 Come prima cosa si proietta il ratio del telefono sul canvas: nell'altezza del telefono (FRAME_HEIGHT) entrerà verticalmente l'intera immagine; nella larghezza del telefono (FRAME_WIDTH) dovranno entrare i pixel dell'immagine contenuti nella linea gialla orizzontale (che dipenderà dal ratio del telefono):
 
