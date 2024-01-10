@@ -16,6 +16,8 @@ A ciascuna card è applicato uno stesso offset (canvas_x_offset, canvas_y_offset
 <img src="https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/6e923034-19cc-4588-897c-0e076cb01309" height="600"> | <img src="https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/4077eb65-dfba-4e56-a816-484f55935104" height="600">
 </p>
 
+(nota: Le immagini utilizzate per le Cards sono catturate tramite google-earth e sono memorizzate lato back-end)
+
 ## MARKER POSITIONING:
 
 Si vuole creare un mapping di questo tipo:
@@ -87,6 +89,6 @@ Nota: All'interno del file configurations.js dentro la folder configs è possibi
 - Configurare l'indirizzo del server django a cui connettersi
 - Impostare un'offset rispetto al bordo inferiore dello schermo per ciascuno screen dell'applicazione (bottomSafeArea)
 
-Nota: Il repository contiene la directory del progetto expo esclus la folder node_moules per via della dimensione e la quantità di files.
+Nota: Il repository contiene la directory del progetto expo esclusa la folder node_moules per via della dimensione e la quantità di files.
 
 Nota: Le dependencies utilizzate nel progetto react, e che compaiono con il comando "npm list" all'interno della folder del progetto, sono specificate nel file installed-dependencies.txt
