@@ -17,6 +17,7 @@ A ciascuna card è applicato uno stesso offset (canvas_x_offset, canvas_y_offset
 </p>
 
 (nota: Le immagini utilizzate per le Cards sono catturate tramite google-earth e sono memorizzate lato back-end)
+(nota: il canvas è solo virtuale e lo sfondo è fermo sull'applicazione)
 
 ## MARKER POSITIONING:
 
