@@ -1,6 +1,13 @@
-# MECCANISMI PER LA SELEZIONE DEL POI
+## Content
 
-## CANVAS
+1. Meccanismo per la selezione del POI
+  1. Idea del Canvas
+  2. Posizionamento dei Markers
+  3. Posizionamento delle Arrows di navigazione
+
+## MECCANISMO PER LA SELEZIONE DEL POI
+
+### IDEA DEL CANVAS
 
 L'idea dietro al positioning delle cards è di specificarne una posizione (rispetto al loro centro) in un canvas virtuale del seguente tipo:
 
@@ -21,9 +28,9 @@ A ciascuna card è applicato uno stesso offset (canvas_x_offset, canvas_y_offset
 
 L'idea dell'utilizzo di questo meccanismo è per semplificare l'interazione dell'utente nella scelta del POI, dando un'impatto visivo e geografico del luogo in cui si sceglie di generare la foto.
 
-## MARKER POSITIONING:
+### POSIZIONAMENTO DEI MARKERS:
 
-Per il posizionamento dei Markers si vuole creare un mapping di questo tipo tra il display del telefono e l'immagine della mappa:
+Per il posizionamento dei Markers ( i bottono arancioni che indicano i vari POI ) si vuole creare un mapping di questo tipo tra il display del telefono e l'immagine della mappa:
 
 <p align="center">
 <img src="https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/8ca0d324-8c48-4178-b248-00f11da3123e" width="350" height="350">
@@ -71,7 +78,7 @@ E si può usare proprio quest'ultimo valore della coordinata (MARKER_SCREEN_POS)
 
 NB: accomodando le posizioni dei markers in modo tale da rientrare nel ratio più piccolo possibile, si ha garanzia che non fuoriescano dallo schermo per tutti i ratio più grandi. 
 
-## ARROWS POSITIONING:
+### POSIZIONAMENTO DELLE ARROWS DI NAVIGAZIONE:
 
 Le arrows per swappare di schermo sono posizionate con la seguente idea riassuntiva; prendendo in considerazione una singola arrow:
 
@@ -89,7 +96,7 @@ Si effettua un'interpolazione agli estremi dell'ellisse per allargarla; il risul
 
 Scegliendo opportuni valori per i fattori utilizzati nelle trasformazioni si garantisce che le arrows compaiono nello schermo utilizzato dall'utente.
 
-# FLOW DELL'APPLICAZIONE
+## FLOW DELL'APPLICAZIONE
 
 Nel menù principale è possibile scegliere 3 opzioni: Generazione di un'immagine, Training LoRA, Check di un lora code.
 
@@ -126,7 +133,7 @@ Questa screen fornisce ad un'utente la possibilità di controllare la validità 
 - Not ready yet: il lora code è valido ma il modello associato è ancora in training
 - Does not exists: il lora code non è un codice valido
 
-# TECHNICAL NOTES
+## TECHNICAL NOTES
 
 Nota: All'interno del file configurations.js, dentro la folder configs, è possibile:
 
