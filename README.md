@@ -148,3 +148,28 @@ Nota: Le dependencies utilizzate nel progetto react, e che compaiono con il coma
 
 - Migliorare la qualità (risoluzione) della foto catturate con la camera di expo: migliore è la qualità meglio viene il LoRA
 - Migliorare le istruzioni per la cattura delle foto di training (?)
+
+# VIDEOS
+
+### GENERAZIONE IMMAGINI
+
+https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/982757c4-059a-4d68-99b2-e78e314c5ba8
+
+https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/ea2886a6-927c-4628-bcb4-fd732a19f302
+
+### SELEZIONE POI
+FIRENZE:
+
+https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/364d61f0-c0df-4039-80f2-70cee512f13d
+
+ROMA:
+
+https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/98e609a6-3524-49f3-bf3f-e23748264d6d
+
+Nota: Non si vedono i touch perchè il registratore android non li ha catturati, quindi spiego in breve: Quando tocchi una arrow blu sui bordi dello schermo, si passa ad una nuova area. Quando tocchi un mark sulla mappa, ti apre un'immagine pop up di quello specifico POI. Aperto il pop up, selezionandolo nuovamente si conferma la scelta del POI mentre toccando da qualsiasi altra parte dello schermo si torna sulla mappa.
+
+### TRAINING (TAKING PICTURES WITH THE CAMERA) & CHECK LORA CODE
+
+https://github.com/Gladdo/Progetto-Tesi-Front-End/assets/94845303/6ce04b61-8cd9-4365-8481-568748124108
+
+
