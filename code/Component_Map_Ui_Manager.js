@@ -111,9 +111,12 @@ export default function Component_Map_Ui_Manager(props){
                 {/* Questo TouchableOpacity è steso su tutto il background all'infuori dell'immagine di popup e serve per eventualmente
                     deselezionare il marker selezionato */}
 
-                <TouchableOpacity onPress={()=>{ setIsMarkerSelected(false)}}>
+                <TouchableOpacity onPress={()=>{
+                    setIsMarkerSelected(false);
+                    console.log("CLICKED");
+                }}>
 
-                    <View style={{ position: 'absolute', elevation: 200 , height: SCREEN_HEIGHT,width: FRAME_WIDTH, flex: 1}}>
+                    <View style={{ position: 'absolute', zIndex: 1000, elevation: 2000 , height: SCREEN_HEIGHT,width: FRAME_WIDTH, flex: 1}}>
 
                     </View>
 
