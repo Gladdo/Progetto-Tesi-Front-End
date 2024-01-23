@@ -1,7 +1,7 @@
 import Component_Map_Arrows_Manager from "./Component_Map_Arrows_Manager";
 import Component_Map_Markers_Manager from "./Component_Map_Markers_Manager";
 import {Image, View, Text, StyleSheet, Animated, Dimensions, TouchableOpacity} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -18,7 +18,7 @@ let FRAME_WIDTH;
 export default function Component_Map_Ui_Manager(props){
     const [curr_area, setCurrArea] = useState(props.init_area);
     const [selected_marker, setSelectedMarker] = useState();
-    const [is_marker_selected, setIsMarkerSelected] = useState(false);
+    const [markerSelected, setMarkerSelected] = useState(false);
 
     card_side_margin = props.card_side_margin
     let AREA_CARDS = props.AREA_CARDS;
@@ -29,7 +29,12 @@ export default function Component_Map_Ui_Manager(props){
     // ------------------------------------------------------------------------------------------------------------------------- |
                                                 /* UI INTERACTIONS EVENTS */
     // ------------------------------------------------------------------------------------------------------------------------- | 
- 
+
+
+    useEffect(() => {
+        console.log("markerSelected", markerSelected);
+    })
+
     let onArrowSelection = (area) => {
         props.uiEventCallBack( { 'title' : "ARROW_SELECTION", selected_area: area });
         setCurrArea(area);
@@ -37,7 +42,7 @@ export default function Component_Map_Ui_Manager(props){
 
     let onMarkerSelection = (marker) => {
         setSelectedMarker(marker);
-        setIsMarkerSelected(true);
+        setMarkerSelected(true);
     }
 
     let onPopupImageSelection = () => {
@@ -48,7 +53,7 @@ export default function Component_Map_Ui_Manager(props){
                                   /* RENDERING SE NON E' STATO SELEZIONATO NESSUN MARKER */
     // ------------------------------------------------------------------------------------------------------------------------- | 
     
-    if(!is_marker_selected){
+    if(!markerSelected){
 
         // UI Opacity Animation
         
@@ -111,16 +116,19 @@ export default function Component_Map_Ui_Manager(props){
                 {/* Questo TouchableOpacity è steso su tutto il background all'infuori dell'immagine di popup e serve per eventualmente
                     deselezionare il marker selezionato */}
 
-                <TouchableOpacity onPress={()=>{
-                    setIsMarkerSelected(false);
+                <TouchableOpacity
+                    style={{ backgroundColor: 'transparent', position: 'absolute', zIndex: 9, height: SCREEN_HEIGHT,width: FRAME_WIDTH, flex: 1}}
+                    onPress={()=>{
                     console.log("CLICKED");
+                    setMarkerSelected(false);
+
                 }}>
 
-                    <View style={{ position: 'absolute', zIndex: 1000, elevation: 2000 , height: SCREEN_HEIGHT,width: FRAME_WIDTH, flex: 1}}>
+                    <View>
 
                     </View>
 
-                </TouchableOpacity>   
+                </TouchableOpacity>
 
                 {/* -----------------------------------------------------------------------------------------------------------------| */}
                                                         {/* SELECTED MARKER RENDERING */}
