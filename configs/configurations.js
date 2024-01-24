@@ -1,7 +1,7 @@
 import { Dimensions } from 'react-native'
 
 export const settings = {
-    'server-address' : "192.168.1.26:8000",
+    'server-address' : "windu.micc.unifi.it:8007",
     'api_url' : "diffusers_api", 
     'image_generation_url' : "/diffusers_api/generate_image",
     'lora_training_url' : "/diffusers_api/lora_training"

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { View, Image, StyleSheet} from 'react-native'
+import { View, Image, StyleSheet, Animated, Text, TouchableOpacity} from 'react-native'
 import { settings, server_queries, SCREEN_WIDTH, SCREEN_HEIGHT, bottomSafeArea, colors } from '../configs/configurations';
 
 import Component_CameraDistancePicker from './Component_CameraDistancePicker';
@@ -17,6 +17,12 @@ export default function Screen_ShotSelectionForm({navigation, route}){
     let poi_image; // Initialized after poi_images data is loaded
     let shot_type = 'FUS';
 
+    let selected_image_index = 0;
+    let openedPanelIndex = 0;
+
+    let isInfoPanelOpen = false;
+    let image_description_panels_positions = [];
+
     // ------------------------------------------------------------------------------------------------------------------------- |
                                                         /* FETCHING POI IMAGES DATA */
     // ------------------------------------------------------------------------------------------------------------------------- | 
@@ -27,7 +33,7 @@ export default function Screen_ShotSelectionForm({navigation, route}){
         .then( (response) =>  response.json())
         .then( json => { 
             image_data = json['poi_images'].map(function(item){ return {
-                image_name: item.name, image_url: item.image }; })
+                image_name: item.name, image_url: item.image, image_description: item.user_description }; })
             if(image_data.length > 0){
 
                 // Initializing poi_image con la prima immagine dell'array
@@ -44,6 +50,7 @@ export default function Screen_ShotSelectionForm({navigation, route}){
 
     const setPoiImage = (index) => {
         poi_image = image_data[index].image_name;
+        selected_image_index = index;
     }
     
     const setShotType = (value) => {
@@ -61,14 +68,71 @@ export default function Screen_ShotSelectionForm({navigation, route}){
         });
     }
 
+    const OpenImageInfoPanel = () => {
+        if(isInfoPanelOpen)
+            return;
+
+        image_description_panels_positions[selected_image_index].setValue(0)
+        openedPanelIndex=selected_image_index;
+        isInfoPanelOpen=true;
+        
+
+    }
+
+    const CloseImageInfoPanel = () => {
+        if(!isInfoPanelOpen)
+            return;
+
+        image_description_panels_positions[openedPanelIndex].setValue(1000)
+        isInfoPanelOpen=false;
+
+    }
+
     // ------------------------------------------------------------------------------------------------------------------------- |
                                                 /* SLIDER COMPONENT DEFINITION */
     // ------------------------------------------------------------------------------------------------------------------------- | 
 
     let image_slider;
+
+    let image_description_panels=[];
+    
     if(loaded){
         
         poi_image = image_data[0].image_name; 
+
+        for(let i = 0; i < image_data.length; i++){
+            image_description_panels_positions.push(new Animated.Value(1000));
+
+            image_description_panels.push(
+            
+                <Animated.View key={i} style={{ justifyContent:'center', alignItems: 'center', zIndex: 3, position: 'absolute', width: SCREEN_WIDTH, height: SCREEN_HEIGHT, transform: [{translateY: image_description_panels_positions[i] }]}}>
+                    
+                    <View style={{width: '80%', height: '80%', backgroundColor: colors["light"], borderWidth: 2, borderColor: colors["dark"],}}>
+                        
+                        <View style={{flex: 0.8,  justifyContent: 'center', alignItems: 'center'}}>
+
+                            <Component_Header2_Bar text={image_data[i].image_description}/>    
+
+                        </View>
+
+                        <View style={{flex: 0.1,  justifyContent: 'center', alignItems: 'center'}}>
+
+                            <TouchableOpacity style={{ justifyContent: 'center', width: "80%", height: "100%", backgroundColor: colors["lightest"], borderWidth: 2, borderColor: colors["dark"]}}onPress={ () => { CloseImageInfoPanel() } }>
+
+                                <Component_Header2_Bar text={"Close"}/>
+
+                            </TouchableOpacity>
+
+                        </View>
+
+
+                    </View>
+                       
+                </Animated.View>
+            )
+
+        }
+
         image_slider = ( 
 
             <View style={{height: '100%'}}>   
@@ -84,12 +148,18 @@ export default function Screen_ShotSelectionForm({navigation, route}){
 
                         <View style={styles.poi_image_frame} >
 
-                            <Image style={{width: "100%", height: "100%"}} resizeMode='cover' source={{ uri: "http://"+ server_address + item.image_url   }} />
-
+                            <Image style={{width: "100%", height: "100%"}} resizeMode='cover' source={{ uri: "http://"+ server_address + item.image_url }} />
+                            
                         </View>
 
                     )}
                 />
+
+                <TouchableOpacity style={{position: 'absolute', right: 5, top:10 , borderRadius: 40, width: 40, height: 40, backgroundColor: 'grey'}} onPress={ () => { OpenImageInfoPanel() } } >
+                
+                        <Image style={{ width: 40, height: 40}} source={require('../resources/icons/info_button.png')} />
+
+                </TouchableOpacity>
 
             </View>
 
@@ -119,25 +189,25 @@ export default function Screen_ShotSelectionForm({navigation, route}){
 
                 </View>
 
-                <View style={{flex: 0.05, width: SCREEN_WIDTH}}>
+                <View style={{flex: 0.08, width: SCREEN_WIDTH, justifyContent:'center'}}>
 
-                    <Component_Header2_Bar text={" Slide to pick an image "}/>
+                    <Component_Header2_Bar text={" Select a " + poi_name + " image:"}/>
 
                 </View>
                 
-                <View style={{flex: 0.4, width: SCREEN_WIDTH}}>
+                <View style={{flex: 0.37, width: SCREEN_WIDTH}}>
 
                     {image_slider}
 
                 </View>
 
-                <View style={{flex: 0.05, width: SCREEN_WIDTH}}>
+                <View style={{flex: 0.08, width: SCREEN_WIDTH, justifyContent:'center'}}>
 
-                    <Component_Header2_Bar text={" Camera distance from the subject: "}/>
+                    <Component_Header2_Bar text={" Select how the subject appears in the selected image: "}/>
 
                 </View>
 
-                <View style={{flex: 0.3, width: SCREEN_WIDTH}}>
+                <View style={{flex: 0.27, width: SCREEN_WIDTH}}>
        
                     <Component_CameraDistancePicker onScroll={ (value) => {setShotType(value)}} />
 
@@ -148,6 +218,8 @@ export default function Screen_ShotSelectionForm({navigation, route}){
                     <Component_Row_Button text={"NEXT"} onPress={onNextButtonPress}/>
 
                 </View>
+
+                {image_description_panels}
 
             </View>
 

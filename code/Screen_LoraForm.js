@@ -5,7 +5,8 @@ import { manipulateAsync, FlipType, SaveFormat } from 'expo-image-manipulator';
 import { colors, settings, text_size, SCREEN_WIDTH, SCREEN_HEIGHT, bottomSafeArea } from '../configs/configurations';
 import { Component_Header1_Bar, Component_Row_Button, Component_Status_Bar } from './Common_Components';
 
-const screenRatio = SCREEN_HEIGHT/SCREEN_WIDTH;
+//Da impostare secondo la propria camera
+const cameraDeviceRatio = 4/3;
 
 // HEAD BUTTONS IMAGES
 const overlayImages=[
@@ -33,6 +34,7 @@ export default function Screen_LoraForm({navigation}){
     const [photo_4, setPhoto4] = useState(undefined);
     const [photo_5, setPhoto5] = useState(undefined);
 
+    const [setupCamera, setSetupCamera] = useState(true);
     const [showCameraView, setShowCameraView] = useState();
     const selected_image = useRef(0);
 
@@ -41,6 +43,9 @@ export default function Screen_LoraForm({navigation}){
 
     // Variabile che contiene il ratio in forma numerica della foto scattata
     const [cameraRatio, setCameraRatio] = useState();
+
+    // Variabile che contiene l'eventuale grandezza / risoluzone della foto presa dalla camera expo (impostata in LoadCameraSetup)
+    const [cameraPictureSize, setCameraPictureSize] = useState();
 
     let camera_ref;
 
@@ -108,7 +113,7 @@ export default function Screen_LoraForm({navigation}){
         if (!camera_ref)
             return;
 
-        camera_ref.takePictureAsync({ onPictureSaved: onPictureSaved });
+        camera_ref.takePictureAsync({ quality: 1.0, onPictureSaved: onPictureSaved });
         
     }
 
@@ -144,8 +149,9 @@ export default function Screen_LoraForm({navigation}){
 
      */
     
-        const LoadCameraRatio = async () => {
+        const LoadCameraSetup = async () => {
         // avaRatiosChar contiene i ratios nella forma di array di stringhe: ['4:3', '16:9', '1:1']
+        // Funzione che restituisce i ratio disponibili
         const avaRatiosChars = await camera_ref.getSupportedRatiosAsync();
         let ratioValues = [];
 
@@ -158,21 +164,36 @@ export default function Screen_LoraForm({navigation}){
         /*  Trovo il ratio più close al ratio dello screen: */
         // Inizializzo il loop
         let closest_ratio_index = 0
-        let abs_diff = Math.abs(screenRatio - closest_ratio_index);
+        let abs_diff = Math.abs(cameraDeviceRatio - closest_ratio_index);
         
         // Ruoto su tutti i ratio
         for(let i = 1; i < ratioValues.length; i++){
-            const curr_abs_diff = Math.abs(screenRatio - ratioValues[i]);
+            const curr_abs_diff = Math.abs(cameraDeviceRatio - ratioValues[i]);
             if( curr_abs_diff < abs_diff){
                 closest_ratio_index = i;
                 abs_diff = curr_abs_diff;            
             }
         }
 
+
+        let availablePictureSizes = [];
+        // Funzione che restituisce le risoluzioni disponibili del device per lo specifico ratio
+        availablePictureSizes = camera_ref.getAvailablePictureSizesAsync(avaRatiosChars[closest_ratio_index]);
+
+        console.log("(DEBUG) Chosen camera ratio:  " + avaRatiosChars[closest_ratio_index])
+        console.log("(DEBUG) Available picture sizes for chosen Ratio: ");
+        for(let i = 0; i < availablePictureSizes.length; i++){
+            console.log(availablePictureSizes[i]);
+        }
+
         // Imposto lo stato della variabile cameraRatio e triggero il rerender:
         setStrCameraRatioState(avaRatiosChars[closest_ratio_index]);  
-        setCameraRatio(ratioValues[closest_ratio_index]);   
+        setCameraRatio(ratioValues[closest_ratio_index]);
 
+        // Scegliere la risoluzione desiderata e impostarla nella seguente variabile di stato:
+        // setCameraPictureSize(availablePictureSizes[0]);
+
+        setSetupCamera(false);
     }
 
     // ------------------------------------------------------------------------------------------------------------------------- |
@@ -236,6 +257,30 @@ export default function Screen_LoraForm({navigation}){
         );
     }
 
+    // ------------------------------------------------------------------------------------------------------------------------- |
+                                            /* PRIMO RENDERING TEMPORANEO PER SETUP PARAMETRI DELLA CAMERA */
+    // ------------------------------------------------------------------------------------------------------------------------- | 
+
+    if(setupCamera){
+
+        return (
+            
+            <View style={{flex: 1, backgroundColor: colors['medium'], justifyContent: 'center', alignItems: 'center'}}>
+            
+                <Text> Loading camera configurations </Text>
+
+                <View style={{height: 0}}>
+
+                    <Camera onCameraReady={() => { console.log("LoadingCamera"); LoadCameraSetup(); }} onMountError={(error) => { console.log("error" + error)}} style={{width: 0, height: 0}} type={type} ref={ (ref) => { camera_ref = ref }}>
+                    </Camera>
+
+                </View>
+                
+            </View>
+
+        )
+    }
+
 
     // ------------------------------------------------------------------------------------------------------------------------- |
                                         /* RENDERING SE SI STA FACENDO UNA FOTO (showCameraView==true) */
@@ -247,7 +292,7 @@ export default function Screen_LoraForm({navigation}){
             
             <View style={{ flex: 1, justifyContent: 'center',}}>
 
-                <Camera onCameraReady={LoadCameraRatio} ratio={strCameraRatio} style={{width: SCREEN_WIDTH, height: SCREEN_HEIGHT}} type={type} ref={ (ref) => { camera_ref = ref }}>
+                <Camera pictureSize={cameraPictureSize} ratio={strCameraRatio} style={{width: SCREEN_WIDTH, height: SCREEN_WIDTH*cameraRatio}} type={type} ref={ (ref) => { camera_ref = ref }}>
 
                     {/* TOP BUTTON CONTAINER */}
                     <View style={[styles.camera_button_container, { top: 30}]}>
