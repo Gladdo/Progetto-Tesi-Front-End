@@ -1,4 +1,4 @@
-import { View , Image, ActivityIndicator, StyleSheet} from 'react-native'
+import { View , Image, ActivityIndicator, StyleSheet, Share} from 'react-native'
 import {useState} from 'react'
 import {settings, SCREEN_HEIGHT, SCREEN_WIDTH, bottomSafeArea, colors} from '../configs/configurations'
 import { Component_Header1_Bar, Component_Header2_Bar, Component_Row_Button, Component_Status_Bar, Component_Text_Input } from './Common_Components';
@@ -15,15 +15,35 @@ export default function Screen_ImageGeneration({navigation, route}){
                                                     /* FUNCTIONS */
     // ------------------------------------------------------------------------------------------------------------------------- | 
 
+    const onShare = async () => {
+        try {
+          const result = await Share.share({
+            message: generated_image_url + '\n\n' + route.params.selected_data['poi_image_description'],
+          });
+          if (result.action === Share.sharedAction) {
+            if (result.activityType) {
+              // shared with activity type of result.activityType
+            } else {
+              // shared
+            }
+          } else if (result.action === Share.dismissedAction) {
+            // dismissed
+          }
+        } catch (error) {
+          Alert.alert(error.message);
+        }
+    };
+
     const setLoraCode = (text) => {
         lora_code = text;
     }
 
-    function generate_url(poi_name, poi_image_name, action_shot_type, dynamic_action_selection, action_prompt, other_details, age, gender, selected_lora){
+    function generate_url(poi_name, poi_image_name, action_shot_type, action, dynamic_action_selection, action_prompt, other_details, age, gender, selected_lora){
         return "http://"+ settings['server-address'] + settings['image_generation_url'] + "?" + 
           "poi_name=" + poi_name + 
           "&poi_image_name=" + poi_image_name +
           "&action_shot_type=" + action_shot_type +
+          "&action_name=" + action + 
           "&dynamic_action_selection=" + dynamic_action_selection +
           "&action_prompt=" + action_prompt + 
           "&other_details=" + other_details +
@@ -34,11 +54,20 @@ export default function Screen_ImageGeneration({navigation, route}){
 
     const generate_image = () => {
 
+        let bool_str;
+
+        if(route.params.selected_data['dynamic_action_selection']){
+            bool_str = "true"
+        }else{
+            bool_str = "false"
+        }
+
         let url = generate_url(
             route.params.selected_data['poi_name'],
             route.params.selected_data['poi_image'],
             route.params.selected_data['shot_type'],
-            "true",
+            route.params.selected_data['action'],
+            bool_str,
             route.params.selected_data['action_prompt'],
             route.params.selected_data['details'],
             route.params.selected_data['age'],
@@ -71,7 +100,7 @@ export default function Screen_ImageGeneration({navigation, route}){
     // ------------------------------------------------------------------------------------------------------------------------- |
                                                 /* RENDERING WHEN THE IMAGE IS GENERATED */
     // ------------------------------------------------------------------------------------------------------------------------- | 
-      
+
     if(generated_image_ready){
         return (
 
@@ -93,14 +122,21 @@ export default function Screen_ImageGeneration({navigation, route}){
             
                 </View>
 
+                {/* SHARE BUTTON */}
+                <View style={{flex: 0.1, width: SCREEN_WIDTH}}>
+                    <Component_Row_Button onPress={() =>{ onShare() }} text={"SHARE"} />
+                </View>
+
+                <View style={{flex: 0.1}}>
+                </View>
+
                 {/* NAVIGATE HOMESCREEN BUTTON */}
                 <View style={{flex: 0.1, width: SCREEN_WIDTH}}>
                     
                     <Component_Row_Button onPress={() =>{ NavigateHomeScreen() }} text={"HOME SCREEN"} />
 
                 </View>
-                <View style={{flex: 0.1}}>
-                </View>
+                
             
             </View>
 

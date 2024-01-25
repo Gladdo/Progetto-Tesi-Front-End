@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { View, Image, StyleSheet, Animated, Text, TouchableOpacity} from 'react-native'
+import { View, Image, StyleSheet, Animated, Text, TouchableOpacity, ScrollView} from 'react-native'
 import { settings, server_queries, SCREEN_WIDTH, SCREEN_HEIGHT, bottomSafeArea, colors } from '../configs/configurations';
 
 import Component_CameraDistancePicker from './Component_CameraDistancePicker';
@@ -15,6 +15,7 @@ export default function Screen_ShotSelectionForm({navigation, route}){
 
     let poi_name = route.params.selected_data['poi_name'];
     let poi_image; // Initialized after poi_images data is loaded
+    let poi_image_description;
     let shot_type = 'FUS';
 
     let selected_image_index = 0;
@@ -63,7 +64,8 @@ export default function Screen_ShotSelectionForm({navigation, route}){
             selected_data : {
                 'poi_name' : poi_name,
                 'poi_image' : poi_image,
-                'shot_type' : shot_type
+                'shot_type' : shot_type,
+                'poi_image_description' : poi_image_description
             } 
         });
     }
@@ -75,7 +77,6 @@ export default function Screen_ShotSelectionForm({navigation, route}){
         image_description_panels_positions[selected_image_index].setValue(0)
         openedPanelIndex=selected_image_index;
         isInfoPanelOpen=true;
-        
 
     }
 
@@ -99,6 +100,7 @@ export default function Screen_ShotSelectionForm({navigation, route}){
     if(loaded){
         
         poi_image = image_data[0].image_name; 
+        poi_image_description = image_data[0].image_description
 
         for(let i = 0; i < image_data.length; i++){
             image_description_panels_positions.push(new Animated.Value(1000));
@@ -109,10 +111,19 @@ export default function Screen_ShotSelectionForm({navigation, route}){
                     
                     <View style={{width: '80%', height: '80%', backgroundColor: colors["light"], borderWidth: 2, borderColor: colors["dark"],}}>
                         
-                        <View style={{flex: 0.8,  justifyContent: 'center', alignItems: 'center'}}>
+                        <View style={{ flex: 0.8, width: '100%',  justifyContent: 'center', alignItems: 'center'}}>
 
-                            <Component_Header2_Bar text={image_data[i].image_description}/>    
+                            <ScrollView contentContainerStyle={{top: 10, width: '94%'}} >
 
+                                <Component_Header2_Bar text={image_data[i].image_description + "\n " +
+                                "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullamco laboriosam, nisi ut aliquid ex ea commodi consequatur. Duis aute irure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." +
+                                "Lorem ipsum dolor sit amet, consectetur adipisci elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrum exercitationem ullamco laboriosam, nisi ut aliquid ex ea commodi consequatur. Duis aute irure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}/> 
+
+                            </ScrollView>
+
+                        </View>
+
+                        <View style={{flex: 0.05}}>
                         </View>
 
                         <View style={{flex: 0.1,  justifyContent: 'center', alignItems: 'center'}}>
@@ -203,7 +214,7 @@ export default function Screen_ShotSelectionForm({navigation, route}){
 
                 <View style={{flex: 0.08, width: SCREEN_WIDTH, justifyContent:'center'}}>
 
-                    <Component_Header2_Bar text={" Select how the subject appears in the selected image: "}/>
+                    <Component_Header2_Bar text={" Select where the subject appears in the image: "}/>
 
                 </View>
 

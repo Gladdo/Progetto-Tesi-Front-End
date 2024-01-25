@@ -68,7 +68,7 @@ export function Component_Text_Input(props){
         
                 <TextInput 
                     onChangeText={(text) => { props.onChangeText(text) }}
-                    placeholder='enter text here...'
+                    placeholder={props.placeholder}
                     editable
                     multiline
                     numberOfLines={4}
