@@ -38,7 +38,8 @@ export default function Screen_ImageGeneration({navigation, route}){
         lora_code = text;
     }
 
-    function generate_url(poi_name, poi_image_name, action_shot_type, action, dynamic_action_selection, action_prompt, other_details, age, gender, selected_lora){
+    function generate_url(poi_name, poi_image_name, action_shot_type, action, dynamic_action_selection, action_prompt, other_details, age, gender, selected_lora, 
+        is_background_edited, theme_description, weather_description, is_theme_set, is_weather_set, is_night_time){
         return "http://"+ settings['server-address'] + settings['image_generation_url'] + "?" + 
           "poi_name=" + poi_name + 
           "&poi_image_name=" + poi_image_name +
@@ -49,30 +50,55 @@ export default function Screen_ImageGeneration({navigation, route}){
           "&other_details=" + other_details +
           "&age=" + age + 
           "&gender=" + gender +
-          "&selected_lora=" + selected_lora;     
+          "&selected_lora=" + selected_lora +
+          "&is_background_edited=" + is_background_edited +
+          "&theme_description=" + theme_description +
+          "&weather_description=" + weather_description +
+          "&is_theme_set=" + is_theme_set +
+          "&is_weather_set=" + is_weather_set +
+          "&is_night_time=" + is_night_time ;          
     }
 
     const generate_image = () => {
 
-        let bool_str;
+        let dynamic_action_selection_str;
 
         if(route.params.selected_data['dynamic_action_selection']){
-            bool_str = "true"
+            dynamic_action_selection_str = "true"
         }else{
-            bool_str = "false"
+            dynamic_action_selection_str = "false"
         }
+
+        let is_theme_set = route.params.selected_data['is_theme_set']
+        let is_weather_set = route.params.selected_data['is_weather_set']
+        let is_night_time = route.params.selected_data['is_night_time']
+        let is_background_edited_str;
+
+        if(is_theme_set || is_weather_set || is_night_time){
+            is_background_edited_str = "true"
+        }
+
+        let is_theme_set_str = ( is_theme_set ? "true" : "false" )
+        let is_weather_set_str = ( is_weather_set ? "true" : "false" )
+        let is_night_time_str = ( is_night_time ? "true" : "false" )
 
         let url = generate_url(
             route.params.selected_data['poi_name'],
             route.params.selected_data['poi_image'],
             route.params.selected_data['shot_type'],
             route.params.selected_data['action'],
-            bool_str,
+            dynamic_action_selection_str,
             route.params.selected_data['action_prompt'],
             route.params.selected_data['details'],
             route.params.selected_data['age'],
             route.params.selected_data['gender'],
-            lora_code
+            lora_code,
+            is_background_edited_str,
+            route.params.selected_data['theme_description'],
+            route.params.selected_data['weather_description'],
+            is_theme_set_str,
+            is_weather_set_str,
+            is_night_time_str
         )
 
         console.log("URL: " + url)

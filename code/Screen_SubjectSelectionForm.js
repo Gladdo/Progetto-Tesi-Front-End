@@ -11,11 +11,6 @@ export default function Screen_SubjectSelectionForm({navigation, route}){
     const [available_actions, setAvailableActions] = useState("");
     const [loaded, setLoaded] = useState(false);
 
-    let poi_name = route.params.selected_data['poi_name'];
-    let poi_image_description = route.params.selected_data['poi_image_description'];
-    let poi_image = route.params.selected_data['poi_image'];
-    let shot_type = route.params.selected_data['shot_type'];
-
     let action = ""
     let dynamic_action_selection = true;
     let action_prompt = ""
@@ -28,6 +23,37 @@ export default function Screen_SubjectSelectionForm({navigation, route}){
 
     let gender_options = ['man', 'woman']
     let age_options = ['young', 'adult', 'old']
+
+    // ------------------------------------------------------------------------------------------------------------------------- |
+                                                        /* SCREEN OUTPUT FUNCTION */
+    // ------------------------------------------------------------------------------------------------------------------------- | 
+
+    const onNextButtonPress = () => {
+        navigation.navigate('Screen_ImageGeneration', 
+        {
+            selected_data : {
+                'poi_name' : route.params.selected_data['poi_name'],
+                'poi_image' : route.params.selected_data['poi_image'],
+                'shot_type' : route.params.selected_data['shot_type'],
+                'poi_image_description' : route.params.selected_data['poi_image_description'],
+                'theme_description' : route.params.selected_data['theme_description'],
+                'weather_description' : route.params.selected_data['weather_description'],
+                'is_theme_set' : route.params.selected_data['is_theme_set'],
+                'is_weather_set' : route.params.selected_data['is_weather_set'],
+                'is_night_time' : route.params.selected_data['is_night_time'],
+                'action_prompt' : action_prompt,
+                'details' : details,
+                'age' : age,
+                'gender' : gender,
+                'action' : action,
+                'dynamic_action_selection' : dynamic_action_selection
+            } 
+        });
+    }
+
+    // ------------------------------------------------------------------------------------------------------------------------- |
+                                                        /* FETCHING ACTIONS DATA */
+    // ------------------------------------------------------------------------------------------------------------------------- | 
 
     useEffect(() => {
         fetch("http://"+ server_address +"/diffusers_api/get_actions")
@@ -81,23 +107,7 @@ export default function Screen_SubjectSelectionForm({navigation, route}){
         gender=gender_options[index];
     }
 
-    const onNextButtonPress = () => {
-        navigation.navigate('Screen_ImageGeneration', 
-        {
-            selected_data : {
-                'poi_name' : poi_name,
-                'poi_image' : poi_image,
-                'poi_image_description' : poi_image_description,
-                'shot_type' : shot_type,
-                'action_prompt' : action_prompt,
-                'details' : details,
-                'age' : age,
-                'gender' : gender,
-                'action' : action,
-                'dynamic_action_selection' : dynamic_action_selection
-            } 
-        });
-    }
+
 
     // ------------------------------------------------------------------------------------------------------------------------- |
                                                     /* RENDERING */
@@ -112,7 +122,7 @@ export default function Screen_SubjectSelectionForm({navigation, route}){
     }
 
     return(
-        <View style={{ flex:1, backgroundColor: '#3e69ad' }}>
+        <View style={{ flex:1, backgroundColor: colors['medium'] }}>
     
             <Component_Status_Bar/>
             
@@ -153,7 +163,7 @@ export default function Screen_SubjectSelectionForm({navigation, route}){
                 {/* ACTION SELECTION */}
                 <View style={{flex: 0.175, width: SCREEN_WIDTH }}> 
 
-                    <Component_Text_Input placeholder={" Enter text here... \n Write something like: \n 'Taking a walk around' or 'Pondering about life' \n\n Or pick an action manually with M button "} onChangeText={(text) => { SetActionPrompt(text) }} />
+                    <Component_Text_Input placeholder={" Write here something like: \n 'Taking a walk around' or 'Pondering about life' \n Or pick an action manually with M button "} onChangeText={(text) => { SetActionPrompt(text) }} />
                     
                     <Animated.View style={{backgroundColor: colors['light'], width: "100%", height: "100%", position: 'absolute', transform: [{translateX: action_picker_x_translation}]}}>
 
@@ -174,7 +184,7 @@ export default function Screen_SubjectSelectionForm({navigation, route}){
                 {/* DETAILS TEXT INPUT */}
                 <View style={{flex: 0.175, width: SCREEN_WIDTH}}>
                     
-                    <Component_Text_Input placeholder={" Enter text here... \n Write something like: \n 'Medieval clothes' or 'Futuristic clothes' "} onChangeText={(text) => { SetDetails(text) }} />
+                    <Component_Text_Input placeholder={" Write here something like: \n 'Medieval clothes' or 'Futuristic clothes' "} onChangeText={(text) => { SetDetails(text) }} />
                     
                 </View>
                 
@@ -216,11 +226,7 @@ export default function Screen_SubjectSelectionForm({navigation, route}){
             </View>
 
         </View>
-    )
-
-    // ------------------------------------------------------------------------------------------------------------------------- |
-                                                    /* BEFORE ACTIONS ARE FETCHED */
-    // ------------------------------------------------------------------------------------------------------------------------- |         
+    )     
 
 }
 

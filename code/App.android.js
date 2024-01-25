@@ -10,6 +10,7 @@ import Screen_CreatedCode from './Screen_CreatedCode';
 import Screen_CheckCode from './Screen_CheckCode';
 import Screen_CitySelection from './Screen_CitySelection';
 import Screen_LoraTutorial from './Screen_LoraTutorial';
+import Screen_BackgroundEditForm from './Screen_BackgroundEditForm'
 
 const ImageGenerationStack = createNativeStackNavigator();
 const LoraTrainingStack  = createNativeStackNavigator();
@@ -23,6 +24,7 @@ export default function App() {
                 <ImageGenerationStack.Screen name="Screen_CitySelection" component={Screen_CitySelection} />
                 <ImageGenerationStack.Screen name="Screen_PoiSelectionForm" component={Screen_PoiSelectionForm} />
                 <ImageGenerationStack.Screen name="Screen_ShotSelectionForm" component={Screen_ShotSelectionForm} />
+                <ImageGenerationStack.Screen name="Screen_BackgroundEditForm" component={Screen_BackgroundEditForm} />
                 <ImageGenerationStack.Screen name="Screen_SubjectSelectionForm" component={Screen_SubjectSelectionForm} />
                 <ImageGenerationStack.Screen name="Screen_ImageGeneration" component={Screen_ImageGeneration} />
             </ImageGenerationStack.Navigator>

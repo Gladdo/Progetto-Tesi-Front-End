@@ -25,6 +25,22 @@ export default function Screen_ShotSelectionForm({navigation, route}){
     let image_description_panels_positions = [];
 
     // ------------------------------------------------------------------------------------------------------------------------- |
+                                                        /* SCREEN OUTPUT FUNCTION */
+    // ------------------------------------------------------------------------------------------------------------------------- | 
+
+    const onNextButtonPress = () => {
+        navigation.navigate('Screen_BackgroundEditForm', 
+        {
+            selected_data : {
+                'poi_name' : poi_name,
+                'poi_image' : poi_image,
+                'shot_type' : shot_type,
+                'poi_image_description' : poi_image_description
+            } 
+        });
+    }
+
+    // ------------------------------------------------------------------------------------------------------------------------- |
                                                         /* FETCHING POI IMAGES DATA */
     // ------------------------------------------------------------------------------------------------------------------------- | 
 
@@ -56,18 +72,6 @@ export default function Screen_ShotSelectionForm({navigation, route}){
     
     const setShotType = (value) => {
         shot_type = value;
-    }
-
-    const onNextButtonPress = () => {
-        navigation.navigate('Screen_SubjectSelectionForm', 
-        {
-            selected_data : {
-                'poi_name' : poi_name,
-                'poi_image' : poi_image,
-                'shot_type' : shot_type,
-                'poi_image_description' : poi_image_description
-            } 
-        });
     }
 
     const OpenImageInfoPanel = () => {
