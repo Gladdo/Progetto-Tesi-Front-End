@@ -1,6 +1,7 @@
 import { Image, TouchableWithoutFeedback, View } from "react-native";
 import { interpolate } from 'react-native-reanimated'
 import {useState} from 'react';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "../configs/configurations";
 
 export default function Component_Map_Arrows_Manager(props){
     /*--------------------------------------------------------------------------------------------------- */
@@ -44,16 +45,16 @@ export default function Component_Map_Arrows_Manager(props){
         Prendi la posizione del'area corrente (point_A) e in relazione alla posizione di ogni altra area (point_B) determina 
         dove disegnare il bottone freccia
     */
-    let point_A = {x: AREA_CARDS[curr_area].canvas_position.x, y: AREA_CARDS[curr_area].canvas_position.y}
+    let point_A = {x: AREA_CARDS[curr_area].canvas_position.x*SCREEN_WIDTH, y: AREA_CARDS[curr_area].canvas_position.y*SCREEN_HEIGHT}
 
     let connected_areas = AREA_CARDS[curr_area].connected_areas;
 
     for(let i = 0; i < connected_areas.length; i++){ 
         area_index = connected_areas[i];
-        if(area_index!=curr_area){
+        if(area_index!=curr_area && area_index < AREA_CARDS.length){
             // poit_A e poit_B sono i centri delle due cards
             
-            let point_B = {x: AREA_CARDS[area_index].canvas_position.x, y: AREA_CARDS[area_index].canvas_position.y}
+            let point_B = {x: AREA_CARDS[area_index].canvas_position.x*SCREEN_WIDTH, y: AREA_CARDS[area_index].canvas_position.y*SCREEN_HEIGHT}
             
             // Trovo il vettore che congiunge i due punti 
             let x = (point_B.x-point_A.x);

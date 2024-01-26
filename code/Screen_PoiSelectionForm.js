@@ -8,7 +8,7 @@ export default function Screen_PoiSelectionForm({navigation, route}){
         <View style={{flex: 1}}>
 
             <Component_Map  
-                selected_city_index={route.params.selected_city_index}
+                city_name={route.params.selected_city_name}
                 width={SCREEN_WIDTH} 
                 height={SCREEN_HEIGHT} 
                 

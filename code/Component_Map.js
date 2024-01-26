@@ -1,5 +1,5 @@
 import { View, Animated, StyleSheet, Image} from "react-native";
-import { settings, media_items_path, CITIES_CARDS } from '../configs/configurations'
+import { settings, media_items_path, CITIES_CARDS, SCREEN_WIDTH, SCREEN_HEIGHT } from '../configs/configurations'
 import Component_Map_Ui_Manager from './Component_Map_Ui_Manager'
 
 const area_card_frame_size = 96 // perchentage
@@ -79,12 +79,12 @@ const HandleUiEvent = (event, props) =>{
 const translateCanvas = (area) => {
         
     Animated.timing(canvas_x_offset, {
-        toValue: -AREA_CARDS[area].canvas_position.x,
+        toValue: -AREA_CARDS[area].canvas_position.x * SCREEN_WIDTH,
         duration: 1000,
         useNativeDriver: false
     }).start()
     Animated.timing(canvas_y_offset, {
-        toValue: -AREA_CARDS[area].canvas_position.y,
+        toValue: -AREA_CARDS[area].canvas_position.y * SCREEN_HEIGHT,
         duration: 1000,
         useNativeDriver: false
     }).start()
@@ -105,7 +105,7 @@ export default function Component_Map(props){
     curr_area = 0;
 
     // AREA CARDS SELECTION
-    AREA_CARDS = CITIES_CARDS[props.selected_city_index]
+    AREA_CARDS = global.CITIES_CARDS[props.city_name]
 
     // AREA CARDS DEFINITION
     /* Consuma i dati delle AREA_CARDS per costruire le views contenenti le aree da mostrare */
@@ -113,7 +113,7 @@ export default function Component_Map(props){
     let rendered_areas = []
     for(let i = 0; i < AREA_CARDS.length; i++)
     {
-        let position = {x: AREA_CARDS[i].canvas_position.x, y: AREA_CARDS[i].canvas_position.y }
+        let position = {x: AREA_CARDS[i].canvas_position.x * SCREEN_WIDTH, y: AREA_CARDS[i].canvas_position.y * SCREEN_HEIGHT }
 
         rendered_areas.push([
 

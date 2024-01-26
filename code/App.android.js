@@ -16,6 +16,9 @@ const ImageGenerationStack = createNativeStackNavigator();
 const LoraTrainingStack  = createNativeStackNavigator();
 const MainStack = createNativeStackNavigator();
 
+global.CITIES_CARDS = {};
+global.are_cities_loaded = false;
+
 export default function App() {
 
     const ImageGenerationStackContainer = () => {
