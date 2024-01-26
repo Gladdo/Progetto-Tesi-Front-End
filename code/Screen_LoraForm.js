@@ -1,6 +1,6 @@
 import { Camera, CameraType } from 'expo-camera';
 import { useState, useRef } from 'react';
-import { Button, Image, StyleSheet, Text, TouchableOpacity, View, StatusBar, Dimensions, FlatList, Animated } from 'react-native'
+import { Button, Image, StyleSheet, Text, TouchableOpacity, View, Alert, FlatList, Animated } from 'react-native'
 import { manipulateAsync, FlipType, SaveFormat } from 'expo-image-manipulator';
 import { colors, settings, text_size, SCREEN_WIDTH, SCREEN_HEIGHT, bottomSafeArea } from '../configs/configurations';
 import { Component_Header1_Bar, Component_Row_Button, Component_Status_Bar } from './Common_Components';
@@ -205,8 +205,13 @@ export default function Screen_LoraForm({navigation}){
     */
 
     const LaunchLora = () => {
-        if( photo_1==undefined || photo_2==undefined || photo_3==undefined || photo_4==undefined || photo_5==undefined )
+        if( photo_1==undefined || photo_2==undefined || photo_3==undefined || photo_4==undefined || photo_5==undefined ){
+            Alert.alert('Missing Images','Take all 5 selfies before continuing', [
+                {text: 'CLOSE', onPress: () => {}},
+            ]);
             return
+        }
+         
 
         let data = new FormData();
 

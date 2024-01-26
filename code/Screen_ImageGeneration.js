@@ -1,4 +1,4 @@
-import { View , Image, ActivityIndicator, StyleSheet, Share} from 'react-native'
+import { View , Image, ActivityIndicator, StyleSheet, Share, ScrollView} from 'react-native'
 import {useState} from 'react'
 import {settings, SCREEN_HEIGHT, SCREEN_WIDTH, bottomSafeArea, colors} from '../configs/configurations'
 import { Component_Header1_Bar, Component_Header2_Bar, Component_Row_Button, Component_Status_Bar, Component_Text_Input } from './Common_Components';
@@ -172,8 +172,8 @@ export default function Screen_ImageGeneration({navigation, route}){
     // ------------------------------------------------------------------------------------------------------------------------- |
                                                 /* RENDERING WHEN THE IMAGE IS LOADING */
     // ------------------------------------------------------------------------------------------------------------------------- |
-
-    if(generated_image_loading){
+    //generated_image_loading
+    if(true){
 
         return(
             
@@ -189,23 +189,22 @@ export default function Screen_ImageGeneration({navigation, route}){
                         <Component_Header1_Bar text={"GENERATION"} />
 
                     </View>
-                    
-                    {/* SEPARATOR */}
-                    <View style={{flex: 0.4 }}>
-                    </View>
-
-                    {/* ACTIVITY INDICATOR */}
-                    <View style={{ flex: 0.2 }}>
-
-                        <ActivityIndicator size="large"/>
-
-                    </View>
 
                     {/* HEADER */}                    
-                    <View style={{flex: 0.2 }}>
-
-                        <Component_Header2_Bar text={"Your image is being baked, wait (4-5 min) ..."} />   
+                    <View style={{flex: 0.2 , justifyContent: 'space-evenly'}}>
+                        
+                        <Component_Header2_Bar text={"Your image is being baked, wait (4-5 min) "} />
+                        <ActivityIndicator size="small"/>
+                        <Component_Header2_Bar text={" Meanwhile, you can read more about the selected image in " + route.params.selected_data['poi_name'] + ":"}/>
                      
+                    </View>
+
+                    <View style={{ flex: 0.7, width: '100%'}}>
+                        
+                        <ScrollView>
+                            <Component_Header2_Bar text={route.params.selected_data['poi_image_description']}/>
+                        </ScrollView>
+                    
                     </View>
             
                 </View>

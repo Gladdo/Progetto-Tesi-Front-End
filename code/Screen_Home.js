@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native'
+import {View, Text, Alert} from 'react-native'
 import { Component_Row_Button, Component_Status_Bar } from './Common_Components';
 import { settings, server_queries, colors, SCREEN_WIDTH, SCREEN_HEIGHT } from '../configs/configurations'
 import { useEffect } from 'react';
@@ -42,7 +42,16 @@ export default function Screen_Home ({navigation}) {
 
                     <View style={{ height: 100}}>
 
-                        <Component_Row_Button text={"GENERATE IMAGES"} onPress={ () => { navigation.navigate('ImageGenerationStackContainer'); }}/>
+                        <Component_Row_Button text={"GENERATE IMAGES"} onPress={ () => { 
+                            if(global.are_cities_loaded==true){
+                                navigation.navigate('ImageGenerationStackContainer')
+                            }else{
+                                Alert.alert('Data not ready yet', 'Data is not ready, wait few more seconds and try again', [
+                                    {text: 'CLOSE', onPress: () => console.log('OK Pressed')},
+                                ]);
+                            } 
+                        
+                        }}/>
 
                     </View>
 
