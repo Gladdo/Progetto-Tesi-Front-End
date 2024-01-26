@@ -172,8 +172,8 @@ export default function Screen_ImageGeneration({navigation, route}){
     // ------------------------------------------------------------------------------------------------------------------------- |
                                                 /* RENDERING WHEN THE IMAGE IS LOADING */
     // ------------------------------------------------------------------------------------------------------------------------- |
-    //generated_image_loading
-    if(true){
+ 
+    if(generated_image_loading){
 
         return(
             
