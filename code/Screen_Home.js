@@ -16,7 +16,6 @@ export default function Screen_Home ({navigation}) {
                 global.are_cities_loaded=true;
                 global.CITIES_CARDS = json
 
-                console.log(json)
           }
         )
         }
