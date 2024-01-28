@@ -67,6 +67,7 @@ export default function Screen_ShotSelectionForm({navigation, route}){
 
     const setPoiImage = (index) => {
         poi_image = image_data[index].image_name;
+        poi_image_description = image_data[index].image_description;
         selected_image_index = index;
     }
     
@@ -118,8 +119,13 @@ export default function Screen_ShotSelectionForm({navigation, route}){
                         <View style={{ flex: 0.8, width: '100%',  justifyContent: 'center', alignItems: 'center'}}>
 
                             <ScrollView contentContainerStyle={{top: 10, width: '94%'}} >
-
-                                <Component_Header2_Bar text={image_data[i].image_description}/> 
+                                
+                                <View style={{paddingLeft: 2, paddingRight: 2, paddingTop:5, paddingBottom: 20}}>
+                                
+                                    <Component_Header2_Bar text={image_data[i].image_description}/>
+                                
+                                </View>
+                                 
 
                             </ScrollView>
 
