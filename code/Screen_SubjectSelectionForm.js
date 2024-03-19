@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import { Animated, View, StyleSheet, TouchableOpacity} from 'react-native'
+import { Animated, View, StyleSheet, TouchableOpacity, Text} from 'react-native'
 import Component_ExclusivePickerButtons from './Component_ExclusivePickerButtons';
 import { Component_Header1_Bar, Component_Header2_Bar, Component_Status_Bar, Component_Text_Input, Component_Row_Button } from './Common_Components';
 import { settings, SCREEN_WIDTH, SCREEN_HEIGHT, bottomSafeArea, colors } from '../configs/configurations';
@@ -150,9 +150,12 @@ export default function Screen_SubjectSelectionForm({navigation, route}){
                     
                     </View>
 
-                    <View style={{flex: 0.1}}>
+                    <View style={{flex: 0.1, borderWidth: 2, margin: 1, backgroundColor: colors["light"]}}>
                         
-                        <TouchableOpacity onPress={() => { OnExplicitActionButtonPress() }}style={{ position: 'absolute' , right: 0, top: 0, height: '100%', minWidth: 40, backgroundColor: 'red'}}>
+                        <TouchableOpacity onPress={() => { OnExplicitActionButtonPress() }}style={{ position: 'absolute' , right: 0, top: 0, height: '100%', minWidth: 40,
+                                            justifyContent: "center", alignItems: "center" }}>
+
+                            <Text style={{ fontSize: 20, fontWeight: "bold", color: "white"}}> M </Text>
 
                         </TouchableOpacity>
 

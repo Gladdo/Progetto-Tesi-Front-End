@@ -1,4 +1,4 @@
-import { Animated, View, StyleSheet, TouchableOpacity} from 'react-native'
+import { Animated, View, StyleSheet, TouchableOpacity, Image} from 'react-native'
 import Component_ExclusivePickerButtons from './Component_ExclusivePickerButtons';
 import { Component_Header1_Bar, Component_Header2_Bar, Component_Status_Bar, Component_Text_Input, Component_Row_Button } from './Common_Components';
 import {  SCREEN_WIDTH, SCREEN_HEIGHT, bottomSafeArea, colors } from '../configs/configurations';
@@ -14,6 +14,10 @@ export default function Screen_SubjectSelectionForm({navigation, route}){
 
     let theme_ui_opacity = new Animated.Value(0.35)
     let weather_ui_opacity = new Animated.Value(0.35)
+    let theme_on_button_opacity = new Animated.Value(0)
+    let weather_on_button_opacity = new Animated.Value(0)
+    let theme_off_button_opacity = new Animated.Value(1)
+    let weather_off_button_opacity = new Animated.Value(1)
     
     // ------------------------------------------------------------------------------------------------------------------------- |
                                                         /* SCREEN OUTPUT FUNCTION */
@@ -60,10 +64,14 @@ export default function Screen_SubjectSelectionForm({navigation, route}){
         if(is_theme_set){
             is_theme_set=false
             theme_ui_opacity.setValue(0.35)
+            theme_on_button_opacity.setValue(0);
+            theme_off_button_opacity.setValue(1);
         }
         else{
             is_theme_set=true
             theme_ui_opacity.setValue(1)
+            theme_on_button_opacity.setValue(1);
+            theme_off_button_opacity.setValue(0);
         }
             
     }
@@ -71,11 +79,15 @@ export default function Screen_SubjectSelectionForm({navigation, route}){
     const SwapIsWeatherSet = () => {
         if(is_weather_set){
             is_weather_set=false
-            weather_ui_opacity.setValue(0.35)
+            weather_ui_opacity.setValue(0.35);
+            weather_on_button_opacity.setValue(0);
+            weather_off_button_opacity.setValue(1);
         }
         else{
             is_weather_set=true
-            weather_ui_opacity.setValue(1)
+            weather_ui_opacity.setValue(1);
+            weather_on_button_opacity.setValue(1);
+            weather_off_button_opacity.setValue(0);
         }
             
     }
@@ -136,10 +148,20 @@ export default function Screen_SubjectSelectionForm({navigation, route}){
                         
                         <Component_Header2_Bar text={"Theme ON/OFF"}/>
                         
-                        <TouchableOpacity onPress={() => { SwapIsThemeSet() } } style={{ backgroundColor: 'green', width: "50%", height: "50%"}}>
-                            
-                            <Animated.View style={{ opacity: theme_ui_opacity}}>
-                                {/* BUTTON IMAGE PLACEHOLDER */}
+                        <TouchableOpacity onPress={() => { SwapIsThemeSet() } } style={{ width: "62%", height: "50%"}}>
+
+                            <Animated.View style={{     opacity: theme_off_button_opacity, justifyContent: "center", alignItems: "center",
+                                                        position: 'absolute', width: "100%", height: "100%"}}>
+
+                                <Image style={{ width: "100%", height: "100%"}} source={require('../resources/icons/switch_button_off.png')} />
+
+                            </Animated.View>
+
+                            <Animated.View style={{     opacity: theme_on_button_opacity, justifyContent: "center", alignItems: "center",
+                                                        position: 'absolute', width: "100%", height: "100%"}}>
+
+                                <Image style={{ width: "100%", height: "100%"}} source={require('../resources/icons/switch_button_on.png')} />
+
                             </Animated.View>
 
                         </TouchableOpacity>
@@ -149,10 +171,16 @@ export default function Screen_SubjectSelectionForm({navigation, route}){
 
                         <Component_Header2_Bar text={"Weather ON/OFF"}/>
 
-                        <TouchableOpacity onPress={() => { SwapIsWeatherSet() } } style={{ backgroundColor: 'blue', width: "50%", height: "50%"}}>
+                        <TouchableOpacity onPress={() => { SwapIsWeatherSet() } } style={{ width: "62%", height: "50%"}}>
 
-                            <Animated.View style={{ opacity: theme_ui_opacity}}>
-                                {/* BUTTON IMAGE PLACEHOLDER */}
+                            <Animated.View style={{     opacity: weather_off_button_opacity, justifyContent: "center", alignItems: "center",
+                                                        position: 'absolute', width: "100%", height: "100%"}}>
+                                <Image style={{  width: "100%", height: "100%"}} source={require('../resources/icons/switch_button_off.png')} />
+                            </Animated.View>
+
+                            <Animated.View style={{     opacity: weather_on_button_opacity, justifyContent: "center", alignItems: "center",
+                                                        position: 'absolute', width: "100%", height: "100%"}}>
+                                <Image style={{  width: "100%", height: "100%"}} source={require('../resources/icons/switch_button_on.png')} />
                             </Animated.View>
 
                         </TouchableOpacity>
